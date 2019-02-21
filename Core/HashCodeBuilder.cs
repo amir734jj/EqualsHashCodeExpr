@@ -22,12 +22,12 @@ namespace Core
                 .GetProperties()
                 .Select<PropertyInfo, Expression>(x =>
                 {
-                    var propertyValue = Expression.Property(arg, x);
+                    var propertyValueExpr = Expression.Property(arg, x);
 
                     if (x.PropertyType.IsDefinedComplexType())
                     {
-                        var testExpr = Expression.NotEqual(propertyValue, Expression.Constant(null));
-                        var ifExpr = Expression.Invoke(BuildExpr(x.PropertyType), propertyValue);
+                        var testExpr = Expression.NotEqual(propertyValueExpr, Expression.Constant(null));
+                        var ifExpr = Expression.Invoke(BuildExpr(x.PropertyType), propertyValueExpr);
                         var elseExpr = Expression.Constant(0);
 
                         var condition = Expression.Condition(
@@ -39,7 +39,8 @@ namespace Core
                     // ReSharper disable once RedundantIfElseBlock
                     else
                     {
-                        return Expression.Call(propertyValue,
+                        // Empty type array is needed to eliminate ambiguity
+                        return Expression.Call(propertyValueExpr,
                             x.PropertyType.GetMethod(Constants.Constants.GetHashCodeMethodName, new Type[] { }));
                     }
                 })

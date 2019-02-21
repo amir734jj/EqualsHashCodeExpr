@@ -25,13 +25,13 @@ namespace Core
                     if (x.PropertyType.IsDefinedComplexType())
                     {
                         return (Expression) Expression.Invoke(BuildExpr(x.PropertyType),
-                            Expression.Property(arg1, x.Name),
+                            Expression.Property(arg1, x),
                             Expression.Property(arg2, x));
                     }
                     // ReSharper disable once RedundantIfElseBlock
                     else
                     {
-                        return Expression.Equal(Expression.Property(arg1, x.Name), Expression.Property(arg2, x.Name));
+                        return Expression.Equal(Expression.Property(arg1, x), Expression.Property(arg2, x));
                     }
                 })
                 .Aggregate(Expression.And);
