@@ -1,6 +1,4 @@
-using System;
 using AutoFixture;
-using Core.Abstracts;
 using Core.Tests.Helpers;
 using Core.Tests.Models;
 using Xunit;

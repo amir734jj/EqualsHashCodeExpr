@@ -1,4 +1,3 @@
-using System;
 using AutoFixture;
 using Core.Tests.Helpers;
 using Core.Tests.Models;
