@@ -1,17 +1,18 @@
 using System;
 using AutoFixture;
+using Core.Tests.Helpers;
 using Core.Tests.Models;
 using Xunit;
 
 namespace Core.Tests
 {
-    public class HashCodeTest
+    public class HashCodeTest : IClassFixture<FixtureBuilderHelper>
     {
         private readonly Fixture _fixture;
 
-        public HashCodeTest()
+        public HashCodeTest(FixtureBuilderHelper fixtureBuilderHelper)
         {
-            _fixture = new Fixture();
+            _fixture = fixtureBuilderHelper.BuildFixture();
         }
         
         [Fact]

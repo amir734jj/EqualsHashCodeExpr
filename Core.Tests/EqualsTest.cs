@@ -1,17 +1,19 @@
 using System;
 using AutoFixture;
+using Core.Abstracts;
+using Core.Tests.Helpers;
 using Core.Tests.Models;
 using Xunit;
 
 namespace Core.Tests
 {
-    public class EqualsTest
+    public class EqualsTest : IClassFixture<FixtureBuilderHelper>
     {
         private readonly Fixture _fixture;
 
-        public EqualsTest()
+        public EqualsTest(FixtureBuilderHelper fixtureBuilderHelper)
         {
-            _fixture = new Fixture();
+            _fixture = fixtureBuilderHelper.BuildFixture();
         }
         
         [Fact]

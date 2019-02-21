@@ -1,13 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using Core.Abstracts;
 using Core.Extensions;
 using Core.Interfaces;
 
 namespace Core
 {
-    public class HashCodeBuilder : IGetHashCodeBuilder
+    public class HashCodeBuilder : AbstractExpressionBuilder, IGetHashCodeBuilder
     {
         public Func<T, int> BuildFunc<T>()
         {
@@ -15,6 +17,11 @@ namespace Core
         }
 
         public Expression BuildExpr(Type type)
+        {
+            return BuildExprHelper(type, new List<Type> {type});
+        }
+
+        private Expression BuildExprHelper(Type type, ICollection<Type> types)
         {
             var arg = Expression.Parameter(type);
 
@@ -24,11 +31,25 @@ namespace Core
                 {
                     var propertyValueExpr = Expression.Property(arg, x);
 
-                    if (x.PropertyType.IsDefinedComplexType())
+                    if (types.Contains(x.PropertyType))
                     {
-                        var testExpr = Expression.NotEqual(propertyValueExpr, Expression.Constant(null));
-                        var ifExpr = Expression.Invoke(BuildExpr(x.PropertyType), propertyValueExpr);
-                        var elseExpr = Expression.Constant(0);
+                        var testExpr = IsNullExpr(propertyValueExpr);
+                        var ifExpr = Expression.Constant(0);
+                        var elseExpr = Expression.Call(propertyValueExpr,
+                            x.PropertyType.GetMethod(Constants.Constants.GetHashCodeMethodName, new Type[] { }));
+
+                        var condition = Expression.Condition(
+                            testExpr, ifExpr, elseExpr
+                        );
+
+                        return condition;
+                    }
+                    else if (x.PropertyType.IsDefinedComplexType())
+                    {
+                        var testExpr = IsNullExpr(propertyValueExpr);
+                        var ifExpr = Expression.Constant(0);
+                        var elseExpr = Expression.Invoke(BuildExprHelper(x.PropertyType, new[] {x.PropertyType}),
+                            propertyValueExpr);
 
                         var condition = Expression.Condition(
                             testExpr, ifExpr, elseExpr

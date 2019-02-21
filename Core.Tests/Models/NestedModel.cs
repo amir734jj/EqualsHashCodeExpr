@@ -5,5 +5,7 @@ namespace Core.Tests.Models
         public int PropertyX { get; set; }
         
         public string PropertyY { get; set; }
+        
+        public ParentModel ParentRef { get; set; }
     }
 }
