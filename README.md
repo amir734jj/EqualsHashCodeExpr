@@ -9,4 +9,4 @@ Func<ParentModel, int> hashCodeFunc = new HashCodeBuilder().BuildFunc<ParentMode
 ```
 
 TODO:
-- Fix the potential infinite recursion while trying to resolve complex types with child of the same type  
+- ~~Fix the potential infinite recursion while trying to resolve complex types with child of the same type~~
