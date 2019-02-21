@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqualsHashCodeExpr", "Core\Core.csproj", "{C7F82645-5A7D-4760-9097-3427E6896E50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Tests", "Core.Tests\Core.Tests.csproj", "{145CB22C-4A23-4C36-86AA-F505C73FE9AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7F82645-5A7D-4760-9097-3427E6896E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7F82645-5A7D-4760-9097-3427E6896E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7F82645-5A7D-4760-9097-3427E6896E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7F82645-5A7D-4760-9097-3427E6896E50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{145CB22C-4A23-4C36-86AA-F505C73FE9AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{145CB22C-4A23-4C36-86AA-F505C73FE9AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{145CB22C-4A23-4C36-86AA-F505C73FE9AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{145CB22C-4A23-4C36-86AA-F505C73FE9AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
