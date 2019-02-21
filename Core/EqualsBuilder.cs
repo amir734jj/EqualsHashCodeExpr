@@ -30,7 +30,7 @@ namespace Core
                 .Select(x =>
                 {
                     var propertyValue1Expr = Expression.Property(arg1, x);
-                    var propertyValue2Expr = Expression.Property(arg1, x);
+                    var propertyValue2Expr = Expression.Property(arg2, x);
 
                     // Elimintaes StackOverFlowException
                     if (types.Contains(x.PropertyType))
