@@ -26,7 +26,7 @@ namespace Core
                     {
                         return (Expression) Expression.Invoke(BuildExpr(x.PropertyType),
                             Expression.Property(arg1, x.Name),
-                            Expression.Property(arg2, x.Name));
+                            Expression.Property(arg2, x));
                     }
                     // ReSharper disable once RedundantIfElseBlock
                     else
