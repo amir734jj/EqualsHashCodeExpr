@@ -8,7 +8,7 @@ using Core.Interfaces;
 
 namespace Core
 {
-    public class EqualsBuilder : AbstractExpressionBuilder, IEqualsBuilder 
+    public class EqualsBuilder : AbstractExpressionBuilder, IEqualsBuilder
     {
         public Func<T, T, bool> BuildFunc<T>()
         {
@@ -16,7 +16,7 @@ namespace Core
         }
 
         public Expression BuildExpr(Type type)
-        {            
+        {
             return BuildExprhelper(type, new List<Type> {type});
         }
 
@@ -41,7 +41,7 @@ namespace Core
                             propertyValue1Expr,
                             x.PropertyType.GetMethod(Constants.Constants.EqualsMethodName, new[] {typeof(object)}),
                             Expression.Property(arg2, x));
-                        
+
                         return Expression.Condition(testExpr, ifExpr, elseExpr);
                     }
                     else if (x.PropertyType.IsDefinedComplexType())

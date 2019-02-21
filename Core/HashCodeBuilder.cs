@@ -31,6 +31,7 @@ namespace Core
                 {
                     var propertyValueExpr = Expression.Property(arg, x);
 
+                    // Elimintaes StackOverFlowException
                     if (types.Contains(x.PropertyType))
                     {
                         var testExpr = IsNullExpr(propertyValueExpr);
@@ -48,7 +49,8 @@ namespace Core
                     {
                         var testExpr = IsNullExpr(propertyValueExpr);
                         var ifExpr = Expression.Constant(0);
-                        var elseExpr = Expression.Invoke(BuildExprHelper(x.PropertyType, new[] {x.PropertyType}),
+                        var elseExpr = Expression.Invoke(
+                            BuildExprHelper(x.PropertyType, types.Concat(new[] {x.PropertyType}).ToList()),
                             propertyValueExpr);
 
                         var condition = Expression.Condition(
