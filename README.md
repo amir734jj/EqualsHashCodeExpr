@@ -10,7 +10,7 @@ Func<ParentModel, int> hashCodeFunc = new HashCodeBuilder().BuildFunc<ParentMode
 
 Or create a instance of `EqualityComparer`:
 ```csharp
-var comparer = EqualityComparerBuilder.New<ParentModel>();
+IEqualityComparer<ParentModel> comparer = EqualityComparerBuilder.New<ParentModel>();
 ```
 
 Or add `EqualityComparer` methods to your model class:
