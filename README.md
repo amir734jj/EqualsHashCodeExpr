@@ -26,3 +26,6 @@ public class ParentModel : EqualityComparerBase<ParentModel>
     public NestedModel NestedRef { get; set; }
 }
 ```
+
+TODO:
+- add an option to pass custom `Equals` or `GetHashCode` funcs to the builders for more customization
