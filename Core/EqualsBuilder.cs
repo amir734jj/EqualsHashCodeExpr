@@ -17,10 +17,10 @@ namespace Core
 
         public Expression BuildExpr(Type type)
         {
-            return BuildExprhelper(type, new List<Type> {type});
+            return BuildExprHelper(type, new List<Type> {type});
         }
 
-        private Expression BuildExprhelper(Type type, ICollection<Type> types)
+        private Expression BuildExprHelper(Type type, ICollection<Type> types)
         {
             var arg1 = Expression.Parameter(type);
             var arg2 = Expression.Parameter(type);
@@ -32,7 +32,7 @@ namespace Core
                     var propertyValue1Expr = Expression.Property(arg1, x);
                     var propertyValue2Expr = Expression.Property(arg2, x);
 
-                    // Elimintaes StackOverFlowException
+                    // Eliminates StackOverFlowException
                     if (types.Contains(x.PropertyType))
                     {
                         var testExpr = IsNullExpr(propertyValue1Expr);
@@ -47,7 +47,7 @@ namespace Core
                     else if (x.PropertyType.IsDefinedComplexType())
                     {
                         return (Expression) Expression.Invoke(
-                            BuildExprhelper(x.PropertyType, types.Concat(new[] {x.PropertyType}).ToList()),
+                            BuildExprHelper(x.PropertyType, types.Concat(new[] {x.PropertyType}).ToList()),
                             Expression.Property(arg1, x),
                             Expression.Property(arg2, x));
                     }

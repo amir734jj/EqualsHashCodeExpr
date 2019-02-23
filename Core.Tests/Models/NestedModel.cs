@@ -1,3 +1,5 @@
+using Core.Builders;
+
 namespace Core.Tests.Models
 {
     public class NestedModel

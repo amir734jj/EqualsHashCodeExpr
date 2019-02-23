@@ -4,7 +4,7 @@ namespace Core.Abstracts
 {
     public abstract class AbstractExpressionBuilder
     {
-        protected BinaryExpression IsNullExpr(Expression valueExpr)
+        protected static BinaryExpression IsNullExpr(Expression valueExpr)
         {
             return Expression.Equal(valueExpr, Expression.Constant(null));
         }

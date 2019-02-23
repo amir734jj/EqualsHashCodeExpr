@@ -1,4 +1,5 @@
 using AutoFixture;
+using Core.Builders;
 using Core.Tests.Helpers;
 using Core.Tests.Models;
 using Xunit;
