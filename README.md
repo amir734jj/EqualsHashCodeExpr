@@ -8,5 +8,21 @@ Func<ParentModel, ParentModel, bool> equalsFunc = new EqualsBuilder().BuildFunc<
 Func<ParentModel, int> hashCodeFunc = new HashCodeBuilder().BuildFunc<ParentModel>();
 ```
 
-~~TODO:~~
-- ~~Fix the potential infinite recursion while trying to resolve complex types with child of the same type~~
+Or create a instance of `EqualityComparer`:
+```csharp
+var comparer = EqualityComparerBuilder.New<ParentModel>();
+```
+
+Or add `EqualityComparer` methods to your model class:
+```csharp
+public class ParentModel : EqualityComparerBase<ParentModel>
+{
+    public string Property1 { get; set; }
+
+    public double Property2 { get; set; }
+    
+    public int Property3 { get; set; }
+
+    public NestedModel NestedRef { get; set; }
+}
+```
